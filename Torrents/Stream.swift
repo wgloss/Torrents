@@ -12,19 +12,19 @@ defined that allow .
 */
 class Stream<T>:Sequence, Generator {
     
-    var memoizedData:Array<T>
     let generator:()->T
-    init(theGenerator:() -> T, memo:Array<T> = []) {
+    init(theGenerator:() -> T) {
         self.generator = theGenerator
-        self.memoizedData = memo
     }
     
+    /*
     func map<P>(f:T -> P) -> Stream<P> {
         var memoizedMap = memoizedData.map(f)
         return Stream<P>(theGenerator: { f(self.generator()) }, memo: memoizedMap)
     }
+*/
     
-    func generate() -> Generator  {
+    func generate() -> Stream<T>  {
         return self
     }
     
